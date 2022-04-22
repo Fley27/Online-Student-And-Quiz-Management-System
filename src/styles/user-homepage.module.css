@@ -1,0 +1,54 @@
+.container{
+    width: 95%;
+    max-width: var(--maxWidth);
+    min-width: var(--maxWidth);
+    margin: 0 auto;
+    height: 100%;
+    padding: 40px 10px 80px 10px;
+    padding-bottom: 20px;
+    overflow: hidden;
+    font-family: 'Inconsolata', monospace;
+    background-color: #ffffff;
+}
+
+
+@media only screen and (max-width: 1360px) {
+    .container{
+        min-width: 800px;
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    .charts,
+    .chart,
+    .card{
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .charts{
+        margin: 0;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .container{
+        min-width: 500px;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .activities{
+        flex-direction: column;
+    }
+
+    .item{
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .container{
+        min-width: 250px;
+    }
+}

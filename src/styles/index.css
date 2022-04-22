@@ -1,0 +1,65 @@
+html,
+body,
+#root,
+.body{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: fit-content;
+    min-height: 100%;
+    font-family: -apple-system,sans-serif;
+    max-height: 100%;
+}
+
+.page-wrapper,
+.page-content {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+:root{ 
+  --black: #202020;
+  --lightBlack: rgba(2, 2, 2, 0.913);
+  --white: rgb(240, 240, 240);
+  --purple: rgb(145, 24, 145);
+  --lightBlue: rgb(125, 183, 184);
+  --green: rgb(68, 111, 68);
+  --yellow: rgb(240, 201, 102);
+  --lightYellow: rgb(249, 249, 224);
+  --pink: rgb(208, 114, 114);
+  --lightGray: rgb(159, 150, 150);
+  --borderGrayColor: rgb(223, 223, 223);
+  --borderPurpleColor: rgb(208, 150, 208);
+  --gray: rgb(65, 65, 65);
+  --maxWidth: 1280px;
+  --openSans: 'Open Sans', sans-serif;
+  --prompt: 'Prompt', sans-serif;
+  --monserrat: 'Montserrat', sans-serif;
+  --bacgroundColor: rgb(250, 250, 250);
+  --blackBackground: #353030;
+  --whiter: #fff;
+  --red: rgb(252, 56, 56);
+  --backgroundImage: linear-gradient(180deg, rgb(255, 197, 80) 0%, rgb(255, 197, 125) 59%);
+  --skyBlue: rgb(5, 96, 104);
+  --blueGradient: linear-gradient(185deg, rgba(255,255,255,1) 8%, rgb(224, 253, 255) 56%, rgba(255,255,255,1) 98%);
+  --yellowGradient: linear-gradient(185deg, rgba(255,255,255,1) 8%, rgb(255, 254, 230) 56%, rgba(255,255,255,1) 98%);
+  --greenGradient: linear-gradient(185deg, rgba(255,255,255,1) 8%, rgb(240, 255, 243) 56%, rgba(255,255,255,1) 98%);
+  --blue: rgb(99, 226, 235);
+  --redGradient: linear-gradient(185deg, rgba(255,255,255,1) 8%, rgb(255, 221, 221) 56%, rgba(255,255,255,1) 98%);
+  --blue: rgb(37, 37, 238);
+}
+
+.recharts-legend-wrapper{
+  width: 100%;
+}
+
+
+a{
+  text-decoration: none;
+  color: var(--black);
+}

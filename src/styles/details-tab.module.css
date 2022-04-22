@@ -1,0 +1,240 @@
+.container{
+    width: 100%;
+    height: fit-content;
+    font-family: var(--prompt);
+}
+
+.card{ 
+    width: 100%;
+    height: fit-content;
+    margin: 20px 0;
+    align-items: center;
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border-radius: 8px;
+    padding: 0;
+}
+
+
+.header{
+    width: 100%;
+    height: fit-content;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 40px 0 20px ;
+    border-bottom: 2px solid var(--white);
+}
+
+.title{
+    width: 100%;
+    text-align: left;
+    margin: 0 40px;
+    font-size: 22px;
+    font-weight: 500;
+    font-family: var(--prompt);
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+}
+
+.item{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid var(--white);
+    flex-wrap: nowrap;
+    width: 100%;
+    padding: 20px 40px;
+    height: fit-content;
+    font-size: 17px;
+    font-weight: 500;
+    cursor: pointer;
+    height: fit-content;
+}
+
+.col{
+    width: 45%;
+    margin: 0;
+    margin-right: 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.col:nth-child(2){
+    margin: 0;
+    margin-left: 5%;
+}
+
+.label{
+    color: var(--black);
+    margin-bottom: 10px;
+    font-family: var(--prompt);
+}
+
+.input{
+    height: 50px;
+    border: 0px;
+    background-color: var(--white);
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 15px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    font-family: var(--prompt);
+    font-weight: 300;
+    border: 2px solid var(--lightGray)
+}
+
+.error_input{
+    background-color: var(--white);
+}
+
+.error{
+    color: var(--red);
+    font-size: 12px;
+    margin-bottom: 20px;
+    height: 10px;
+    font-family: var(--prompt);
+    font-weight: 300;
+}
+
+.input:focus,
+.error_input:focus{
+    outline: 0;
+    background-color: var(--white);
+}
+
+.left{
+    width: 150px;
+    min-width: 150px;
+    font-weight: 400;
+    color: var(--black);
+}
+
+.item > span{
+    padding-left: 10%;
+    font-size: 17px;
+    color: var(--gray);
+    font-weight: 400;
+}
+
+.bottom{
+    width: 100%;
+    padding: 20px 40px;
+}
+
+.buttons{
+    display: flex;
+}
+
+.button{
+    width: fit-content;
+    height: 45px;
+    padding: 0 20px;
+    border: 2px solid;
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-family: var(--prompt);
+}
+
+.mauvre{
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+.mauvre:hover{
+    background-color: var(--white);
+}
+
+.red{
+    border-color:var(--red);
+    color: var(--red);
+}
+
+.red:hover{
+    background-color: var(--white);
+}
+
+.green{
+    border-color: var(--green);
+    color: var(--green);
+}
+
+.green:hover{
+    background-color: var(--white);
+}
+
+.caution{
+    color: gray;
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .item,
+    .bottom{
+        padding: 20px 10px;
+    }
+
+    .wrap{
+        flex-direction: column;
+        border-bottom: 0;
+        padding: 0;
+        padding-left: 0;
+    }
+
+    .col{
+        padding: 20px 10px;
+        width: 100%;
+        border-bottom: 2px solid var(--white);
+    }
+
+    .col:nth-child(2){
+        margin: 0;
+        margin-left: 0;
+    }
+
+    .left{
+        width: 90px;
+        min-width: 90px;
+        font-size: 16px;
+    }
+
+    .item > span{
+        font-size: 15px;
+        inline-size: calc(100% - 100px);
+        overflow-wrap: break-word;
+    }
+
+    .caution{
+        font-size: 15px;
+    }
+
+    .header{
+        padding-left: 10px;
+    }
+
+    .title{
+        margin: 0;
+    }
+
+    .button{
+        height: 38px;
+    }
+}
+
