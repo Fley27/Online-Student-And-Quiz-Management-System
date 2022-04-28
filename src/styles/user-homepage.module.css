@@ -1,20 +1,18 @@
 .container{
     width: 95%;
     max-width: var(--maxWidth);
-    min-width: var(--maxWidth);
-    margin: 0 auto;
-    height: 100%;
+    height: fit-content;
     padding: 40px 10px 80px 10px;
-    padding-bottom: 20px;
-    overflow: hidden;
+    padding-bottom: 60px;
     font-family: 'Inconsolata', monospace;
     background-color: #ffffff;
+    margin: 0 auto;
 }
 
 
 @media only screen and (max-width: 1360px) {
     .container{
-        min-width: 800px;
+        min-width: 250px;
     }
 }
 
@@ -33,7 +31,7 @@
 
 @media only screen and (max-width: 850px) {
     .container{
-        min-width: 500px;
+        min-width: 250px;
     }
 }
 

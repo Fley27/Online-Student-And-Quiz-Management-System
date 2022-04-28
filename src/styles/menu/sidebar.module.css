@@ -1,0 +1,95 @@
+.container{
+    width: 200px;
+    min-height: 100vh;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 10px;
+    background-color: var(--white);
+    font-family: var(--prompt);
+    box-shadow: rgba(0, 0, 0, 0.026) 1.95px 1.95px 2.6px;
+}
+
+.logo{
+    font-size: 30px;
+    text-transform: capitalize;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.section{
+    margin: 0;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
+.title{
+    font-size: 13px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 15px;
+}
+
+.item{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
+.icon{
+    display: inline-block;
+    margin: 10px 0;
+    margin-right: 15px;
+}
+
+.icon > i{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.option{
+    color: var(--black);
+}
+
+@media only screen and (max-width: 1100px) {
+    .container{
+        width: 175px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .container{
+        width: 90px;
+    }
+
+    .logo{
+        font-size: 22px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .section{
+        margin: 0;
+    }
+
+    .item{
+        justify-content: center;
+        
+    }
+
+    .option,
+    .title{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .container{
+        display: none;
+    }
+}

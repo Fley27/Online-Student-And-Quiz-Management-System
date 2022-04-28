@@ -28,7 +28,7 @@ const Activity= ({name, type, label, description, amout}) => {
                 <div className = {`${styles.area} ${type === "success" ? styles.success : styles.danger}`}>
                     <div className = {`${styles.icon}`}><i className="far fa-newspaper"></i></div>
                     <div className = {`${styles.data}`}>
-                        <div className = {styles.number}>{amout} {name}</div>
+                        <div className = {styles.number}>{amout}</div>
                         <div className = {styles.name}>{description}</div>
                     </div>
                 </div>

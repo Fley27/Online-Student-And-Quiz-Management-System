@@ -27,11 +27,6 @@ const NumberOfUserPerCountry = ({title}) => (
                 </div>
             </div>
         </div>
-        <div className = {styles.footer}>
-                <div className = {styles.label}>
-                    See more <span><i className="fas fa-arrow-right"></i></span>
-                </div>
-        </div>
     </div>
 )
 

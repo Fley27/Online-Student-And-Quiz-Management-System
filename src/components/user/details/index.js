@@ -64,8 +64,8 @@ function UserDetails (props) {
                 <div onClick = {()=> handleSelect("Details")} className = {`${styles.item} ${selected === "Details" ? styles.selected : null}`}>
                     Details
                 </div>
-                <div onClick = {()=> handleSelect("Quizes")} className = {`${styles.item} ${selected === "Quizes" ? styles.selected : null}`}>
-                    Quizes
+                <div onClick = {()=> handleSelect("Quizzes")} className = {`${styles.item} ${selected === "Quizzes" ? styles.selected : null}`}>
+                    Quizzes
                 </div>
                 <div onClick = {()=> handleSelect("Drafts")} className = {`${styles.item} ${selected === "Drafts" ? styles.selected : null}`}>
                     Drafts

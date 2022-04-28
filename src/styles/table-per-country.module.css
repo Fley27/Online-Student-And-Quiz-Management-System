@@ -59,7 +59,7 @@
     color: var(--lightGray);
     text-align: left;
     width: 20%;
-    font-family: var(--openSans);
+    font-family: var(--prompt);
 }
 
 .wider{
@@ -71,7 +71,7 @@
     width: 100%;
     height: fit-content;
     margin: 0;
-    font-family: var(--monserrat);
+    font-family: var(--prompt);
 }
 
 .tbody{
@@ -131,7 +131,7 @@
     align-items: center;
     font-size: 15px;
     color: rgb(21, 20, 20);
-    font-family: var(--monserrat);
+    font-family: var(--prompt);
 }
 
 .action > .span{
@@ -172,15 +172,15 @@
 }
 
 @media only screen and (max-width: 650px) {
-    .th{
-        font-size: 14px;
+    .table{
+        padding: 0;
+        padding-top: 0;
     }
-}
-
-@media only screen and (max-width: 550px) {
     .title{
+        padding: 10px 0;
         padding-left: 5px;
         font-size: 17px;
+        margin-bottom: 0;
     }
     .thead,
     .tbody{
@@ -219,7 +219,9 @@
 		border-bottom: 1px solid #eee; 
 		position: relative;
 		padding-left: 50%; 
-        font-size: 13px;
+        font-size: 15px;
+        letter-spacing: normal;
+        font-weight: 300;
 	}
 
     .th:before { 
@@ -232,7 +234,9 @@
 		padding-right: 10px; 
 		white-space: nowrap;
         font-weight: 500;
-
+        font-size: 14px;
+        margin-left: 5px;
+        text-transform: uppercase;
         margin-left: 5px;
 	}
 
@@ -243,8 +247,16 @@
         content: "Students"; 
     }
 
+    .tbody{
+        border: 0;
+    }
+
     .body{
         border-top: 3px solid var(--white) ;
+    }
+
+    .tbody:nth-child(1) > .th:nth-child(1){
+        border-top: 0;
     }
 
     .footer{

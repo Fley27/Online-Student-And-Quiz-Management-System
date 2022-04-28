@@ -28,7 +28,6 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    letter-spacing: 1.2px;
 }
 
 
@@ -59,7 +58,7 @@
     color: var(--lightGray);
     text-align: left;
     width: 20%;
-    font-family: var(--openSans);
+    font-family: var(--prompt);
 }
 
 .wider{
@@ -71,7 +70,7 @@
     width: 100%;
     height: fit-content;
     margin: 0;
-    font-family: var(--monserrat);
+    font-family: var(--prompt);
 }
 
 .tbody{
@@ -131,7 +130,7 @@
     align-items: center;
     font-size: 15px;
     color: rgb(21, 20, 20);
-    font-family: var(--monserrat);
+    font-family: var(--prompt);
 }
 
 .action > .span{
@@ -171,30 +170,24 @@
     }
 }
 
+
+
 @media only screen and (max-width: 650px) {
-    .th{
-        font-size: 14px;
+    .table{
+        padding: 0;
+        padding-top: 0;
+    }
+    .title{
+        padding: 10px 0;
+        padding-left: 5px;
+        font-size: 17px;
+        margin-bottom: 0;
     }
 
     .th:nth-child(1){
         display: none;
     }
 
-    .th:nth-child(2){
-        width: 60%;
-    }
-
-    .th:nth-child(3){
-        width: 40%;
-    }
-}
-
-
-@media only screen and (max-width: 550px) {
-    .title{
-        padding-left: 5px;
-        font-size: 17px;
-    }
     .thead,
     .tbody{
         padding: 0 ;
@@ -232,7 +225,9 @@
 		border-bottom: 1px solid #eee; 
 		position: relative;
 		padding-left: 50%; 
-        font-size: 13px;
+        font-size: 15px;
+        font-weight: 300;
+        letter-spacing: normal;
 	}
 
     .th:before { 
@@ -245,8 +240,11 @@
 		padding-right: 10px; 
 		white-space: nowrap;
         font-weight: 500;
-
+        text-transform: uppercase;
+        font-size: 14px;
         margin-left: 5px;
+        margin-left: 5px;
+        letter-spacing: normal;
 	}
 
     .th:nth-child(2):before { 
@@ -256,7 +254,15 @@
         content: "Subscribed at"; 
     }
 
+    .tbody{
+        border: 0;
+    }
+
     .body{
         border-top: 3px solid var(--white) ;
+    }
+
+    .tbody:nth-child(1) > .th:nth-child(1){
+        border-top: 0;
     }
 }

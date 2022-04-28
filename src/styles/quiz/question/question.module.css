@@ -1,0 +1,146 @@
+.container{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 30px;
+    border: 2px solid var(--white);
+    margin: 10px 0;
+}
+
+.collapsed > .column{
+    display:  none;
+}
+
+.hidden{
+    padding: 0;
+    border: 0;
+}
+
+.header{
+    height: fit-content;
+    width: 100%;
+    font-family: var(--prompt);
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.title{
+    font-size: 17px;
+    width: 100%;
+    font-family: var(--prompt);
+}
+
+.category{
+    color: var(--lightGray);
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.label{
+    color: #000;
+    font-family: var(--prompt);
+}
+
+.input{
+    height: 50px;
+    border: 0px;
+    background-color: var(--whiter);
+    border: 2px solid var(--lightGray);
+    border-radius: 0px;
+    padding: 10px;
+    font-size: 17px;
+    font-family: var(--prompt);
+    width: 100%;
+}
+
+.textarea{
+    font-family: var(--prompt);
+    font-weight: 300;
+    font-size: 17px;
+    min-height: none;
+    resize: "none";
+    max-height: 350px;
+    display: flex;
+    align-items: center;
+}
+
+.input:focus{
+    outline: 0;
+    background-color: var(--white);
+}
+
+.error_input{
+    background-color: var(--whiter);
+}
+
+.error{
+    color: var(--red);
+    font-size: 14px;
+    margin-bottom: 15px;
+    height: 10px;
+    font-family: var(--prompt);
+}
+
+.add{
+    display: flex;
+    margin: 10px 0;
+    font-family: var(--prompt);
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    cursor: pointer;
+}
+
+.icon{
+    margin-right: 10px;
+}
+
+.icon i,
+.label_add{
+    color: var(--blue);
+}
+
+.label_add{
+    font-size: 15px;
+}
+
+.radioButton{
+    width: 80px;
+    height: 40px;
+    background-color: var(--white);
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 10px 0;
+    position: relative;
+}
+
+.green{
+    background-color: var(--green);
+}
+
+.status{
+    min-height: 35px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: var(--whiter);
+    margin: auto 0;
+    position: absolute;
+    left: 0;
+    transition: .3s ease-in left;
+}
+
+.green > .status {
+    left: 45%;
+    transition: .3s ease-in left;
+}

@@ -1,5 +1,5 @@
 import React, {useState, useLayoutEffect, useEffect} from 'react';
-import { Search } from './search';
+import { Search } from '../search';
 import { TableUsers } from '../table/user';
 import styles from '../../styles/user-homepage.module.css';
 
@@ -44,6 +44,9 @@ const User = ({title, fetchUsers, auth, user, link}) => {
                 handleSelect = {handleSelect}
                 handleChange = {handleChange}
                 name = {name}
+                item1 = "All"
+                item2 = "Active"
+                item3 = "Suspended"
             />
             <TableUsers
                 users = {users}

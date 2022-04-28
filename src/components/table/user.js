@@ -62,7 +62,7 @@ export const TableUsers = ({users = [], link}) => {
                                     <span>Lorentz Edma Norga Ménélas</span>
                                 </div>
                                 <div className = {`${styles.th} ${styles.wider} ${styles.tb}`}>
-Camp-Perrin, Haiti</div>
+                            Camp-Perrin, Haiti</div>
                                 <div className = {`${styles.th} ${styles.tb} ${styles.action}`}>
                                 (509) 314-585-96
                                 </div>
