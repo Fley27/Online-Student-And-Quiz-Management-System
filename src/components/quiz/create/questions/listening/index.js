@@ -1,8 +1,8 @@
-import React, {useState, useRef, useEffect} from "react";
+import React, {useRef, useEffect} from "react";
 import autosize from "autosize";
 import styles from "../../../../../styles/quiz/question/question.module.css"
 
-const ListeningQuestion = ({state, handleChange}) => {
+const ListeningQuestion = ({state, handleChange, error, setError}) => {
     useEffect(() => {
         autosize(question.current);
         autosize(audioUrl.current);
@@ -10,12 +10,6 @@ const ListeningQuestion = ({state, handleChange}) => {
 
     const question = useRef();
     const audioUrl = useRef();
-
-    const [error, setError] = useState({
-        question: "", 
-        audioUrl: ""
-    })
-
 
     const inputValidation = (name, item) => {
         let value = "";
@@ -28,20 +22,6 @@ const ListeningQuestion = ({state, handleChange}) => {
         return false
     }
 
-    const formValidation = () =>{
-        setError({
-            question,
-            audioUrl
-        })
-
-        const question = inputValidation("question", state.question.question);
-        const audioUrl = inputValidation("audioUrl", state.question.audioUrl) 
-
-        if(question || audioUrl)
-            return false;
-    
-        return true;
-    }
 
     return(
         <div className = {`${styles.container} ${styles.hidden}`}>
@@ -68,7 +48,7 @@ const ListeningQuestion = ({state, handleChange}) => {
                 <>
                     <div className = {styles.label}>Link of the Audio</div>
                     {
-                        error.question ? (
+                        error.audioUrl ? (
                             <div className = {styles.error}>{error.audioUrl}</div>
                         ):null
                     }

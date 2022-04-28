@@ -10,6 +10,9 @@ const Question = ({state, setState}) => {
 
     const [error, setError] = useState({
         category : "",
+        question : "",
+        audioUrl: "",
+        answer: ""
     })
 
     const [selectAnswerID, setSelectAnswerID] =  useState("")
@@ -23,7 +26,7 @@ const Question = ({state, setState}) => {
     const inputValidation = (name, item) => {
         let value = "";
         if(!item)
-            value = `Your ${name} is required.`;
+            value = `This field is required.`;
         setError(prevState=>({...prevState, [name]: value}))
 
         if(value)
@@ -33,29 +36,46 @@ const Question = ({state, setState}) => {
 
     const formValidation = () =>{
         setError({
-            category
+            category : "",
+            question : "",
+            audioUrl: "",
+            answer: ""
         })
-
-        const category = inputValidation("category", state.question.category) 
-
-        if(category)
+        let audioUrl = false;
+        const category = inputValidation("category", state.question.category);
+        const question = inputValidation("question", state.question.question) 
+        if(state.question.category === "listening")
+            audioUrl = inputValidation("audioUrl", state.question.audioUrl) 
+        //alert(`${audioUrl} ${question}`)
+        if(category || question || audioUrl)
             return false;
     
         return true;
     }
 
     const generateAnswerForms =()=>{
+        let answers = [];
+
+        const isAllowed = formValidation()
+
+        if(!isAllowed)
+            return 0;
+
+        if(state.question.answers.length){
+            answers = state.question.answers;
+            const index = answers.findIndex(element => element.id === selectAnswerID)
+            if(answers[index].answer === ""){ 
+                setError(prevState=>({...prevState, answer: "This Field is required."}))
+                return 0;
+            }
+        }
+
         const object = {
             id: Date.now(),
             answer: "",
             status: false
         }
 
-        let answers = [];
-
-        if(state.question.answers.length)
-            answers = state.question.answers;
-        
         answers.push(object)
         setSelectAnswerID(object.id)
 
@@ -77,7 +97,7 @@ const Question = ({state, setState}) => {
     const handleAnswerChange = (e) => {
         let answers = state.question.answers;
 
-        const {name, value} = e.target;
+        const {value} = e.target;
 
         answers.map(element => {
             if(element.id === selectAnswerID){
@@ -92,11 +112,29 @@ const Question = ({state, setState}) => {
     return(
         <div className = {styles.container}>
             <div className = {styles.header}>
-                <div className = {styles.title}>
-                    {!state.question.question ? "Not specified": state.question.question}
+                <div className = {styles.item}>
+                    <div className = {styles.title}>
+                        {!state.question.question ? "Not specified": state.question.question}
+                    </div>
+                    <div className = {styles.category}>
+                        {!state.question.category ? "Not specified": state.question.category}
+                    </div>
                 </div>
-                <div className = {styles.category}>
-                    {!state.question.category  ? "Not specified": state.question.category}
+                <div className = {styles.item}>
+                    <div className = {styles.dots}>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div className = {styles.angle}>
+                        {
+                            1 ? (
+                                <i className="far fa-angle-up"></i>
+                            ): (
+                                <i className="far fa-angle-down"></i>
+                            )
+                        }
+                    </div>
                 </div>
             </div>
             <div className = {styles.column}>
@@ -126,12 +164,16 @@ const Question = ({state, setState}) => {
                         state = {state}
                         setState = {setState}
                         handleChange = {handleChange}
+                        error = {error}
+                        setError =  {setError}
                     />
                 ): state.question.category === "writting" ? (
                     <WrittingQuestion
                         state = {state}
                         setState = {setState}
                         handleChange = {handleChange}
+                        error = {error}
+                        setError =  {setError}
                     />
                 ) : null
             }
@@ -141,9 +183,10 @@ const Question = ({state, setState}) => {
                 selectAnswerID = {selectAnswerID}
                 setSelectAnswerID = {setSelectAnswerID}
                 handleAnswerChange = {handleAnswerChange}
+                error = {error}
             />
             {
-                state.question.category ? (
+                state.question.category && state.question.answers.length <= 4? (
                     <div onClick = {()=> generateAnswerForms()} className = {styles.add}>
                         <div className = {styles.icon}><i className="fas fa-plus"></i></div>
                         <div className = {styles.label_add}>Add Answer</div>

@@ -1,19 +1,14 @@
-import React, {useState, useRef, useEffect} from "react";
+import React, {useRef, useEffect} from "react";
 import autosize from "autosize";
 import styles from "../../../../../styles/quiz/question/question.module.css"
 
-const WrittingQuestion = ({state, handleChange}) => {
+const WrittingQuestion = ({state, handleChange, error, setError}) => {
     useEffect(() => {
         autosize(question.current);
     })
 
     const question = useRef();
 
-    const [error, setError] = useState({
-        question: "", 
-        audioUrl: ""
-    })
-    
     const inputValidation = (name, item) => {
         let value = "";
         if(!item)
