@@ -7,7 +7,7 @@ export default function Sidebar (){
             <div className = {styles.logo}>LHSSF</div>
             <div className = {styles.section}>
                 <div className = {styles.title}>Analytics</div>
-                <div onClick = {()=> window.location.href = "/dashboard"} className = {styles.item}>
+                <div onClick = {()=> window.location.href = "/"} className = {styles.item}>
                     <div className = {styles.icon}>
                         <i className="far fa-chart-bar"></i>
                     </div>

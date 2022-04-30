@@ -1,0 +1,59 @@
+.container{
+    display: none;
+}
+
+@media only screen and (max-width: 650px) {
+    .container{
+        position: fixed;
+        top: calc(100% - 60px);
+        height: 60px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        background-color: var(--belge);
+        align-items: center;
+        padding: 0 5%;
+    }
+
+    .section{
+        height: fit-content;
+        width: fit-content;
+    }
+
+    .item{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .icon{
+        margin: 0 auto;
+    }
+    
+    .icon > i{
+        font-size: 24px;
+        font-weight: 200;
+    }
+
+    .badge{
+        display: none;
+        width: 5px;
+        height: 5px;
+        background-color: var(--red);
+        position: relative;
+        margin-bottom: 5px;
+    }
+
+    .selected > .badge{
+        display: block;
+    }
+
+    .selected > .icon > i{
+        font-weight: 500;
+    }
+    
+}

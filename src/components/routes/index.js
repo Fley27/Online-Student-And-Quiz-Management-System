@@ -15,7 +15,7 @@ const Routess = () => {
             <Routes>           
                 <Route path='/login' caseSensitive={false} element={<Login/>} />
                 <Route path='/Register' caseSensitive={false} element={<SignUp/>} />
-                <Route path='/dashboard' caseSensitive={false} element={<Dashboard/>} />
+                <Route path='/' caseSensitive={false} element={<Dashboard/>} />
                 <Route path='/Teachers' caseSensitive={false} element={<Teachers/>} />
                 <Route path='/teacher' caseSensitive={false} element={<DetailsTeacher/>} />
                 <Route path='/edit' caseSensitive={false} element={<Edit/>} />

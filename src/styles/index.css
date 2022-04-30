@@ -60,6 +60,13 @@ body,
 @media only screen and (max-width: 650px) {
   .page-content{
     width: 100%;
+    height: calc(100vh - 60px);
+  }
+
+  .extend{
+    width: calc(100% - 0px);
+    overflow-y: scroll;
+    height: 100Vh;
   }
   
 }
