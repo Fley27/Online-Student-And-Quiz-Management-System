@@ -2,36 +2,12 @@ import React, {useRef, useEffect} from "react";
 import autosize from "autosize";
 import styles from "../../../../../styles/quiz/question/question.module.css"
 
-const WrittingQuestion = ({state, handleChange, error, setError}) => {
+const WrittingQuestion = ({state, index, handleChange, error, setError}) => {
     useEffect(() => {
         autosize(question.current);
     })
 
     const question = useRef();
-
-    const inputValidation = (name, item) => {
-        let value = "";
-        if(!item)
-            value = `Your ${name} is required.`;
-        setError(prevState=>({...prevState, [name]: value}))
-
-        if(value)
-            return true;
-        return false
-    }
-
-    const formValidation = () =>{
-        setError({
-            question
-        })
-
-        const question = inputValidation("question", state.question.question);
-
-        if(question)
-            return false;
-    
-        return true;
-    }
 
     return(
         <div className = {`${styles.container} ${styles.hidden}`}>
@@ -49,8 +25,8 @@ const WrittingQuestion = ({state, handleChange, error, setError}) => {
                         name = "question"
                         ref = {question}
                         rows = {1}
-                        onChange = {handleChange}
-                        value = {state.question.question}
+                        onChange = {e => handleChange(index, e)}
+                        value = {state.question}
                     />
                 </>
             </div>

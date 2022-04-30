@@ -25,7 +25,7 @@ function UserDetails (props) {
     return(
         <div className = {styles.container}>
             <div>
-                <a href = {`/admin/${props.link}`} className = {styles.btn}>
+                <a href = {`/teachers/${props.link}`} className = {styles.btn}>
                     <span><i className = "fas fa-arrow-left"></i></span>
                     {props.title}
                 </a>

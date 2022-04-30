@@ -10,17 +10,17 @@ const Answers = ({state, changeAnswerStatus, ...props}) => {
 
     const answer = useRef();
 
-    if(state.question.answers.length){
+    if(state.answers.length){
         return(
             <>
                 <div className = {styles.title}>Answers</div>
                 {
-                    state.question.answers.map(item => (
+                    state.answers.map((item, index) => (
                         <div key = {item.id} className = {`${styles.container} 
                         ${!item.status && props.selectAnswerID !== item.id  ?  styles.red :item.status && props.selectAnswerID !== item.id ? styles.blue: null} 
                         ${props.selectAnswerID !== item.id ? styles.collapsed : "" }`}>
-                            <div onClick = {() => props.setSelectAnswerID(item.id)} className = {styles.header}>
-                                <div className = {styles.item}>
+                            <div  className = {styles.header}>
+                                <div onClick = {() => props.setSelectAnswerID(item.id)} className = {styles.item}>
                                     <div className = {styles.title}>
                                         {!item.answer ? "Not specified": item.answer}
                                     </div>
@@ -37,9 +37,9 @@ const Answers = ({state, changeAnswerStatus, ...props}) => {
                                     <div className = {styles.angle}>
                                         {
                                             props.selectAnswerID === item.id ? (
-                                                <i className="far fa-angle-up"></i>
+                                                <i onClick = {() => props.collapseAnswer(props.index)} className="far fa-angle-up"></i>
                                             ): (
-                                                <i className="far fa-angle-down"></i>
+                                                <i onClick = {() => props.setSelectAnswerID(item.id)}  className="far fa-angle-down"></i>
                                             )
                                         }
                                     </div>
@@ -59,14 +59,14 @@ const Answers = ({state, changeAnswerStatus, ...props}) => {
                                         name = "answer"
                                         ref = {answer}
                                         rows = {1}
-                                        onChange = {props.handleAnswerChange}
+                                        onChange = {e => props.handleChange(index, props.index, e)}
                                     />
                                 </>
                             </div>
                             <div className = {styles.column}>
                                 <>
                                     <div className = {styles.label}>Is it a Good Answer?</div>
-                                    <div onClick = {()=> changeAnswerStatus(item.id)} className = {`${styles.radioButton} ${item.status ? styles.green : null}`}>
+                                    <div onClick = {()=> changeAnswerStatus(index, props.index)} className = {`${styles.radioButton} ${item.status ? styles.green : null}`}>
                                         <div className = {styles.status}></div>
                                     </div>
                                 </>

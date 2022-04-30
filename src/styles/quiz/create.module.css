@@ -1,22 +1,44 @@
 .container{
     max-width: 1800px;
-    width: 95%;
+    width: 100%;
     min-height: 100vh;
     height: fit-content;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    padding: 30px 0;
-    margin: 0 auto;
+    padding: 0 ;
+    margin: 0;
+    position: relative;
 }
 
 .quiz{
-    width: 45%;
+    width: 50%;
     min-width: 750px;
     display: flex;
     flex-direction: column;
     height: fit-content;
     padding: 20px 30px;
+}
+
+.btn{
+    margin-bottom: 20px;
+    display: block;
+    font-size: 20px;
+    font-family: var(--prompt);
+}
+
+.btn > span{
+    margin-right: 15px;
+}
+
+.btn > span > i{
+    font-weight: 300;
+    font-size: 17px;
+}
+
+.btn:hover{
+    color: var(--purple);
+    border-width: 2px;
 }
 
 .questions{
@@ -60,10 +82,110 @@
 }
 
 .preview{
-    width: 55%;
-    min-width: 400px;
+    width: 50%;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    flex: 1 1 0%;
     display: flex;
-    flex-direction: column;
-    height: 100%;
-    background-color: var(--lightGray);
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    flex-flow: column nowrap;
+    background-color: var(--white);
+    user-select: none;
+    z-index: 3;
+}
+
+
+.btnPreview{
+    display: none;
+}
+
+@media only screen and (max-width: 1510px){
+    .preview{
+        width: calc(100% - 750px);
+    }
+}
+
+@media only screen and (max-width: 1280px){
+    .preview{
+        display: none;
+    }
+
+    .quiz{
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .btnPreview{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        height: 45px;
+        background-color: var(--whiter);
+        width: 45px;
+        padding: 0 20px;
+        font-family: var(--prompt);
+        color: var(--belge);
+        font-size: 17px;
+        border-radius: 100%;
+        cursor: pointer;
+        border: 2px solid var(--belge);
+        left: 90vw;
+        top: 90vh;
+        z-index: 100;
+    }
+
+    .btnPreview:hover{
+        background-color: var(--white);
+    }
+
+    .floating{
+        display: flex;
+        width: 100%;
+        z-index: 99;
+    }
+}
+
+@media only screen and (max-width: 1080px){
+    .quiz{
+        width: 90%;
+        margin: 0 auto;
+    }    
+}
+
+@media only screen and (max-width: 800px){
+    .quiz{
+        width: 95%;
+        min-width: 250px;
+        padding: 20px 10px;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .quiz{
+        padding: 20px 0;
+    }
+
+    .btnPreview{
+        left: 88vw;
+    }
+}
+
+@media only screen and (max-width: 500px){
+
+    .btnPreview{
+        left: 85vw;
+    }
+}
+
+@media only screen and (max-width: 500px){
+
+    .btnPreview{
+        left: 83vw;
+    }
 }

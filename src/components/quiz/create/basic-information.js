@@ -130,7 +130,7 @@ const BasicInformation = ({state, setState}) => {
                     <input 
                         onKeyPress = {handleFirstNameKeyPress} 
                         onChange = {handleChange} 
-                        ref = {firstName} placeholder = "John" 
+                        ref = {firstName} placeholder = "Ex: Evaluate your skills." 
                         className = {`${error.firstName ? styles.error_input : styles.input}`} 
                         name = "firstName" 
                         type = "text"
@@ -144,15 +144,18 @@ const BasicInformation = ({state, setState}) => {
                             <div className = {styles.error}>{error.firstName}</div>
                         ):null
                     }
-                    <input 
+                    <select 
                         onKeyPress = {handleFirstNameKeyPress} 
                         onChange = {handleChange} 
-                        ref = {firstName} placeholder = "John" 
+                        ref = {firstName} placeholder = "EX: Schedule" 
                         className = {`${error.firstName ? styles.error_input : styles.input}`} 
                         name = "firstName" 
                         type = "text"
                         
-                    />
+                    >
+                        <option value = "schedule">Schedule</option>
+                        <option value = {3}>Live</option>
+                    </select>
                 </div>
             </div>
             <div className = {styles.row}>
@@ -184,7 +187,7 @@ const BasicInformation = ({state, setState}) => {
                     </select>
                 </div>
                 <div className = {styles.col}>
-                    <div className = {styles.label}>Allowed Time</div>
+                    <div className = {styles.label}>Date</div>
                     {
                         error.firstName ? (
                             <div className = {styles.error}>{error.firstName}</div>
@@ -193,7 +196,7 @@ const BasicInformation = ({state, setState}) => {
                     <input 
                         onKeyPress = {handleFirstNameKeyPress} 
                         onChange = {handleChange} 
-                        ref = {firstName} placeholder = "John" 
+                        ref = {firstName} placeholder = "Ex: 04/05/2022" 
                         className = {`${error.firstName ? styles.error_input : styles.input}`} 
                         name = "firstName" 
                         type = "text"

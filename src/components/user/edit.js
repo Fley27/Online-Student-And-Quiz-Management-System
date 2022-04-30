@@ -51,7 +51,7 @@ const Edit = ({updateUser, link, title, detailUser, user, auth, id}) => {
     return(
         <div className = {styles.container}>
             <div>
-                <a href = {`/admin/${link}`} className = {styles.btn}>
+                <a href = {`/teachers/${link}`} className = {styles.btn}>
                     <span><i className = "fas fa-arrow-left"></i></span>
                     {title}
                 </a>

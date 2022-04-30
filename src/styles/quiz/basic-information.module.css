@@ -72,3 +72,18 @@
     font-family: var(--prompt);
 }
 
+@media only screen and (max-width: 600px){
+    .row{
+        width: 100%;
+        height: fit-content;
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .col{
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+

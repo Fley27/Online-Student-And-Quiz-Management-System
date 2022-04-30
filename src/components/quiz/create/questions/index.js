@@ -1,10 +1,10 @@
-import React, {useState, useRef} from "react";
+import React, {useState, useRef, useEffect} from "react";
 import styles from "../../../../styles/quiz/question/question.module.css"
 import ListeningQuestion from "./listening";
 import WrittingQuestion from "./writting";
 import Answers from "../answer";
 
-const Question = ({state, setState}) => {
+const Question = ({state, setState, selectAnswerID, setSelectAnswerID, ...props}) => {
 
     const category = useRef();
 
@@ -14,12 +14,13 @@ const Question = ({state, setState}) => {
         audioUrl: "",
         answer: ""
     })
-
-    const [selectAnswerID, setSelectAnswerID] =  useState("")
     
-    const handleChange = (e) =>{
+    const handleChange = (index, e) =>{
         const {name, value} = e.target;
-        setState(prevState=>({...prevState, question: { ...prevState.question, [name]: value}})) 
+        let questions = [...state.questions];
+        questions[index][name] = value;
+
+        setState(prevState => ({...prevState, questions: questions}))
     }
 
 
@@ -34,7 +35,8 @@ const Question = ({state, setState}) => {
         return false
     }
 
-    const formValidation = () =>{
+    const formValidation = (index) =>{
+        const questions = [...state.questions];
         setError({
             category : "",
             question : "",
@@ -42,10 +44,10 @@ const Question = ({state, setState}) => {
             answer: ""
         })
         let audioUrl = false;
-        const category = inputValidation("category", state.question.category);
-        const question = inputValidation("question", state.question.question) 
-        if(state.question.category === "listening")
-            audioUrl = inputValidation("audioUrl", state.question.audioUrl) 
+        const category = inputValidation("category", questions[index].category);
+        const question = inputValidation("question", questions[index].question) 
+        if(questions[index].category === "listening")
+            audioUrl = inputValidation("audioUrl", questions[index].audioUrl) 
         //alert(`${audioUrl} ${question}`)
         if(category || question || audioUrl)
             return false;
@@ -53,21 +55,23 @@ const Question = ({state, setState}) => {
         return true;
     }
 
-    const generateAnswerForms =()=>{
-        let answers = [];
+    const generateAnswerForms =(index)=>{
+        let questions = [...state.questions];
+        let answers = questions[index].answers;
 
-        const isAllowed = formValidation()
+        const isAllowed = formValidation(index)
 
         if(!isAllowed)
             return 0;
 
-        if(state.question.answers.length){
-            answers = state.question.answers;
-            const index = answers.findIndex(element => element.id === selectAnswerID)
-            if(answers[index].answer === ""){ 
-                setError(prevState=>({...prevState, answer: "This Field is required."}))
-                return 0;
-            }
+        if(answers.length){
+            const currentIndex = answers.findIndex(element => element.id === selectAnswerID)
+
+            if(currentIndex !== -1)
+                if(answers[currentIndex].answer === ""){ 
+                    setError(prevState=>({...prevState, answer: "This Field is required."}))
+                    return 0;
+                }
         }
 
         const object = {
@@ -76,125 +80,147 @@ const Question = ({state, setState}) => {
             status: false
         }
 
-        answers.push(object)
+        questions[index].answers.push(object);
         setSelectAnswerID(object.id)
 
-        setState(prevState=>({...prevState, question: { ...prevState.question, answers: answers}}))
+        setState(prevState=>({...prevState, questions: questions}))
     }
 
-    const changeAnswerStatus = (id) =>{
-        let answers = state.question.answers;
 
-        answers.map(element => {
-            if(element.id === id){
-                element.status = !element.status;
-                return 0;
-            }
-        })
-        setState(prevState=>({...prevState, question: { ...prevState.question, answers: answers }}))
+    const collapseAnswer = (index) => {
+        setError(prevState=>({...prevState, answer: ""}))
+        let questions = [...state.questions];
+        let answers = questions[index].answers;
+        const currentIndex = answers.findIndex(element => element.id === selectAnswerID)
+
+
+        if(answers[currentIndex].answer === ""){ 
+            setError(prevState=>({...prevState, answer: "This Field is required."}))
+            return 0;
+        }
+
+        setSelectAnswerID("")
     }
 
-    const handleAnswerChange = (e) => {
-        let answers = state.question.answers;
+    const changeAnswerStatus = (index, questionIndex) =>{
+        let questions = [...state.questions];
+        questions[questionIndex].answers[index].status = !questions[questionIndex].answers[index].status;
+        //alert(JSON.stringify(questions))
+        setState(prevState => ({...prevState, questions: questions}))
+        //alert(JSON.stringify(state))
+    }
 
-        const {value} = e.target;
+    const handleAnswerChange = (index, questionIndex, e) => {
+        let questions = [...state.questions];
+        let answers = questions[questionIndex].answers;
 
-        answers.map(element => {
-            if(element.id === selectAnswerID){
-                element.answer = value;
-                return 0;
-            }
-        })
+        const {name, value} = e.target;
 
-        setState(prevState=>({...prevState, question: { ...prevState.question, answers: answers }}))
+        answers[index][name] = value;
+
+        questions[questionIndex].answers = answers;
+
+        setState(prevState=>({...prevState, questions: questions}))
     } 
 
-    return(
-        <div className = {styles.container}>
-            <div className = {styles.header}>
-                <div className = {styles.item}>
-                    <div className = {styles.title}>
-                        {!state.question.question ? "Not specified": state.question.question}
-                    </div>
-                    <div className = {styles.category}>
-                        {!state.question.category ? "Not specified": state.question.category}
-                    </div>
-                </div>
-                <div className = {styles.item}>
-                    <div className = {styles.dots}>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <div className = {styles.angle}>
-                        {
-                            1 ? (
-                                <i className="far fa-angle-up"></i>
-                            ): (
-                                <i className="far fa-angle-down"></i>
-                            )
-                        }
-                    </div>
-                </div>
-            </div>
-            <div className = {styles.column}>
-                <>
-                    <div className = {styles.label}>Category</div>
-                    {
-                        error.category ? (
-                            <div className = {styles.error}>{error.category}</div>
-                        ):null
-                    }
-                    <select 
-                        className = {`${styles.input} ${error.category ? styles.error_input : ""}`} 
-                        name = "category"
-                        ref = {category}
-                        value = {state.question.category}
-                        onChange = {handleChange}
-                    >
-                        <option value="">Select...</option>
-                        <option value="listening">Listening</option>
-                        <option value="writting">Writting</option>
-                    </select>
-                </>
-            </div>
-            {
-                state.question.category === "listening" ? (
-                    <ListeningQuestion
-                        state = {state}
-                        setState = {setState}
-                        handleChange = {handleChange}
-                        error = {error}
-                        setError =  {setError}
-                    />
-                ): state.question.category === "writting" ? (
-                    <WrittingQuestion
-                        state = {state}
-                        setState = {setState}
-                        handleChange = {handleChange}
-                        error = {error}
-                        setError =  {setError}
-                    />
-                ) : null
-            }
-            <Answers
-                state = {state}
-                changeAnswerStatus = {changeAnswerStatus}
-                selectAnswerID = {selectAnswerID}
-                setSelectAnswerID = {setSelectAnswerID}
-                handleAnswerChange = {handleAnswerChange}
-                error = {error}
-            />
-            {
-                state.question.category && state.question.answers.length <= 4? (
-                    <div onClick = {()=> generateAnswerForms()} className = {styles.add}>
-                        <div className = {styles.icon}><i className="fas fa-plus"></i></div>
-                        <div className = {styles.label_add}>Add Answer</div>
-                    </div>
-                ): null
-            }
-        </div>
-    )
+    if(state.questions.length){
+        return(
+            <>
+                {
+                    state.questions.map((item, index )=> (
+                        <div key = {item.id} className = {`${styles.container} ${props.selectQuestionID !== item.id ? styles.collapsed : "" }`}>
+                            <div className = {styles.header}>
+                                <div onClick = {() => props.setSelectQuestionID(item.id)} className = {styles.item}>
+                                    <div className = {styles.title}>
+                                        {!item.question ? "Not specified": item.question}
+                                    </div>
+                                    <div className = {styles.category}>
+                                        {!item.category ? "Not specified": item.category}
+                                    </div>
+                                </div>
+                                <div className = {styles.item}>
+                                    <div className = {styles.dots}>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <div className = {styles.angle}>
+                                        {
+                                            props.selectQuestionID === item.id ? (
+                                                <i onClick = {() => props.setSelectQuestionID("")} className="far fa-angle-up"></i>
+                                            ): (
+                                                <i onClick = {() => props.setSelectQuestionID(item.id)} className="far fa-angle-down"></i>
+                                            )
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div className = {styles.column}>
+                                <>
+                                    <div className = {styles.label}>Category</div>
+                                    {
+                                        error.category ? (
+                                            <div className = {styles.error}>{error.category}</div>
+                                        ):null
+                                    }
+                                    <select 
+                                        className = {`${styles.input} ${error.category ? styles.error_input : ""}`} 
+                                        name = "category"
+                                        ref = {category}
+                                        value = {item.category}
+                                        onChange = {e => handleChange(index, e)}
+                                    >
+                                        <option value="">Select...</option>
+                                        <option value="listening">Listening</option>
+                                        <option value="writting">Writting</option>
+                                    </select>
+                                </>
+                            </div>
+                            <div className = {styles.main}>
+                                {
+                                    item.category === "listening" ? (
+                                        <ListeningQuestion
+                                            state = {item}
+                                            index = {index}                                        
+                                            handleChange = {handleChange}
+                                            error = {error}
+                                            setError =  {setError}
+                                        />
+                                    ): item.category === "writting" ? (
+                                        <WrittingQuestion
+                                            state = {item}
+                                            index = {index} 
+                                            handleChange = {handleChange}
+                                            error = {error}
+                                            setError =  {setError}
+                                        />
+                                    ) : null
+                                }
+                                <Answers
+                                    state = {item}
+                                    index = {index}
+                                    changeAnswerStatus = {changeAnswerStatus}
+                                    selectAnswerID = {selectAnswerID}
+                                    setSelectAnswerID = {setSelectAnswerID}
+                                    handleChange = {handleAnswerChange}
+                                    error = {error}
+                                    collapseAnswer = {collapseAnswer}
+                                />
+                                {
+                                    item.category && item.answers.length <= 4? (
+                                        <div onClick = {()=> generateAnswerForms(index)} className = {styles.add}>
+                                            <div className = {styles.icon}><i className="fas fa-plus"></i></div>
+                                            <div className = {styles.label_add}>Add Answer</div>
+                                        </div>
+                                    ): null
+                                }
+                            </div>
+                        </div>
+                    ))
+                }
+            </>
+        )
+    }else return <></>
 }
 
 export default Question;
