@@ -136,7 +136,7 @@
         cursor: pointer;
         border: 2px solid var(--belge);
         left: 90vw;
-        top: 90vh;
+        top: calc(90vh - 45px);
         z-index: 100;
     }
 
